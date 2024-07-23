@@ -19,6 +19,17 @@ body {
     border: 2px solid #192021;
 }
 
+.signup-container{
+    background-color: #192021;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    width: 600px;
+    
+    border: 2px solid #192021;
+}
+
+
 h1 {
     text-align: center;
     margin-bottom: 20px;
@@ -81,6 +92,7 @@ button {
     border-radius: 5px;
     background-color: #f46436;
     color: #fff;
+    width: 100px;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
