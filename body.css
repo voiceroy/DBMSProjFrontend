@@ -1,0 +1,78 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #2a2a2a;
+    color: #fff;
+}
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+.navbar {
+    background-color: #192021;
+    color: white;
+    height: 100%;
+}
+
+.navbar-container {
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    font-family: "Just Another Hand", cursive;
+    font-size: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.brand a {
+    color: white;
+    text-decoration: none;
+}
+
+
+.brand img {
+    height: 100px;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center;
+}
+
+.nav-links a {
+    font-family: "Just Another Hand", cursive;
+    color: white;
+    text-decoration: none;
+    font-size: 28px;
+    font-weight: 80;
+    margin: 0 15px;
+    padding: 10px;
+    transition: 0.3s ease;
+}
+
+.nav-links a:hover {
+    background-color: #333;
+    border-radius: 5px;
+
+}
+
+.about-section {
+    padding: 20px;
+    background: #333;
+    margin-top: 20px;
+}
+.about-section h1 {
+    text-align: center;
+    color: #f46536;
+}
+.about-section p {
+    font-size: 18px;
+}
