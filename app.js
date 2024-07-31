@@ -1,79 +1,105 @@
-const order = document.getElementById('order-btn');
+const order = document.getElementById("order-btn");
 order.addEventListener("click", () => {
-    window.location.href = 'http://127.0.0.1:5500/#piz';
+  window.location.href = "http://127.0.0.1:5500/#piz";
 });
 
-const sign = document.getElementById('btn');
+const sign = document.getElementById("btn");
 sign.addEventListener("click", () => {
-    window.location.href = 'http://127.0.0.1:5500/login.html';
+  window.location.href = "http://127.0.0.1:5500/login.html";
 });
 
-const cart = document.getElementById('btn-cart');
+const cart = document.getElementById("btn-cart");
 cart.addEventListener("click", () => {
-    window.location.href = 'http://127.0.0.1:5500/cart.html';
+  window.location.href = "http://127.0.0.1:5500/cart.html";
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
-    if (isLoggedIn === 'true') {
-        document.getElementById('btn').style.display = "none";
-        document.getElementById('logout-btn').style.display = 'inline';
-    } else {
-        document.getElementById('btn').style.display = 'inline';
-        document.getElementById('logout-btn').style.display = 'none';
-    }
+document.addEventListener("DOMContentLoaded", () => {
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
+  if (isLoggedIn === "true") {
+    document.getElementById("btn").style.display = "none";
+    document.getElementById("logout-btn").style.display = "inline";
+  } else {
+    document.getElementById("btn").style.display = "inline";
+    document.getElementById("logout-btn").style.display = "none";
+  }
 });
 
-document.getElementById('logout-btn').addEventListener('click', () => {
-    localStorage.removeItem('isLoggedIn');
-    window.location.reload();
+document.getElementById("logout-btn").addEventListener("click", () => {
+  localStorage.removeItem("isLoggedIn");
+  fetch("http://172.16.0.93:8080/logout");
+  window.location.reload();
 });
 
-fetch('http://172.16.0.93:8080/items') // Replace with your backend endpoint URL
-.then(response => response.json())
-.then(data => {
-    const pizzaContainer = document.getElementById('pizza-container');
-    const nonPizzaContainer = document.getElementById('non-pizza-container');
+fetch("http://172.16.0.93:8080/items")
+  .then((response) => response.json())
+  .then((data) => {
+    const pizzaContainer = document.getElementById("pizza-container");
+    const nonPizzaContainer = document.getElementById("non-pizza-container");
 
-    // Display pizza items
-    data.pizzas.forEach(pizza => {
-        const pizzaItem = document.createElement('div');
-        pizzaItem.classList.add('pizza-item');
-        pizzaItem.innerHTML = `
-            <img src="chicken.jpg" alt="${pizza.name}"> <!-- Replace with actual image URLs if available -->
+    const imageUrlMapping = {
+      Margherita: "pizza1.jpg",
+      Pepperoni: "pizza3.jpg",
+      "BBQ Chicken": "chcikenP.jpg",
+      "Veggie Delight": "pizza2.jpg",
+      Hawaiian: "hawaiian.jpg",
+      "Garlic Bread": "Garlicbread.jpg",
+      "Chicken Wings": "chicken.jpg",
+      "Pasta Alfredo": "pasta.jpg",
+      Salad: "salad.jpg",
+      Brownie: "choco.jpg",
+    };
+
+    data.pizzas.forEach((pizza) => {
+      const pizzaItem = document.createElement("div");
+      pizzaItem.classList.add("pizza-item");
+      console.log(pizza);
+      const pizzaImageUrl = imageUrlMapping[pizza.name];
+      pizzaItem.innerHTML = `
+            <img src="${pizzaImageUrl}" alt="${pizza.name}"> 
+            <span class="id">${pizza.pizza_id}</span>
+            <span class="type">pizza</span>
             <p>${pizza.name}</p>
-            <p><i class="fa fa-inr"></i> ${pizza.price}</p>
+            <span class="price"><i class="fa fa-inr"></i> ${pizza.price}</span>
             <button class="add-to-cart-btn">ADD TO CART</button>
         `;
-        pizzaContainer.appendChild(pizzaItem);
+      pizzaContainer.appendChild(pizzaItem);
     });
 
-    // Display non-pizza items
-    data.non_pizzas.forEach(nonPizza => {
-        const nonPizzaItem = document.createElement('div');
-        nonPizzaItem.classList.add('pizza-item');
-        nonPizzaItem.innerHTML = `
-            <img src="non_pizza_placeholder.jpg" alt="${nonPizza.name}"> <!-- Replace with actual image URLs if available -->
+    data.non_pizzas.forEach((nonPizza) => {
+      const nonPizzaItem = document.createElement("div");
+      nonPizzaItem.classList.add("pizza-item");
+      const non_pizzaImageUrl = imageUrlMapping[nonPizza.name];
+      console.log(nonPizza);
+      nonPizzaItem.innerHTML = `
+            <img src="${non_pizzaImageUrl}" alt="${nonPizza.name}"> 
+            <span class="id">${nonPizza.non_pizza_id}</span>
+            <span class="type">non-pizza</span>
             <p>${nonPizza.name}</p>
-            <p><i class="fa fa-inr"></i> ${nonPizza.price}</p>
+            <span class="price"><i class="fa fa-inr"></i> ${nonPizza.price}</span>
             <button class="add-to-cart-btn">ADD TO CART</button>
         `;
-        nonPizzaContainer.appendChild(nonPizzaItem);
+      nonPizzaContainer.appendChild(nonPizzaItem);
     });
 
-    // Attach event listeners for "Add to Cart" buttons
-    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-    document.querySelectorAll('.add-to-cart-btn').forEach(button => {
-        button.addEventListener('click', (event) => {
-            const item = event.target.parentElement;
-            const itemName = item.querySelector('p').textContent;
-            const itemPrice = item.querySelector('p:nth-child(3)').textContent;
-            cartItems.push({ name: itemName, price: itemPrice });
-            localStorage.setItem('cartItems', JSON.stringify(cartItems));
-            alert(`${itemName} added to cart!`);
+    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    document.querySelectorAll(".add-to-cart-btn").forEach((button) => {
+      button.addEventListener("click", (event) => {
+        const item = event.target.parentElement;
+        const item_id = item.querySelector("span.id").textContent;
+        const itemName = item.querySelector("p").textContent;
+        const itemPrice = item.querySelector("span.price").textContent;
+        const itemType = item.querySelector("span.type").textContent;
+        cartItems.push({
+          id: item_id,
+          name: itemName,
+          price: itemPrice,
+          type: itemType,
         });
+        localStorage.setItem("cartItems", JSON.stringify(cartItems));
+        alert(`${itemName} added to cart!`);
+      });
     });
-})
-.catch(error => {
-    console.error('Error fetching data:', error);
-});
+  })
+  .catch((error) => {
+    console.error("Error fetching data:", error);
+  });
