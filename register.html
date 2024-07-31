@@ -1,30 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign UP - Pizzeria</title>
+    <title>Sign Up</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <div class="signup-container">
         <h1>Sign Up</h1>
-        <form action="#" method="post" class="form">
+        <form id="signup-form" class="form">
             <div class="input-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
+                <label for="username">Name</label>
+                <input type="text" id="username" name="name" required>
             </div>
             <div class="input-group">
-                <label for="Email">Email</label>
-                <input type="text" id="email" name="email" required>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
             </div>
             <div class="input-group">
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required>
             </div>
-            <button type="submit" id="signup">Sign up</button>
+            <div class="input-group">
+                <label for="address">Address</label>
+                <input type="address" id="address" name="address" required>
+            </div>
+            <button type="submit" id="signup">Sign Up</button>
         </form>
-        
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.querySelector('.form');
+
+            form.addEventListener('submit', async (event) => {
+                event.preventDefault(); // Prevent the default form submission
+
+                const name = document.getElementById('username').value;
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                const address = document.getElementById('address').value;
+
+                try {
+                    const response = await fetch('http://172.16.0.93:8080/register', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            name,
+                            email,
+                            password,
+                            address
+                        })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+
+                    const result = await response.text();
+                    console.log(result); // Handle the response from the server
+
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            });
+        });
+
+    </script>
 </body>
+
 </html>

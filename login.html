@@ -1,26 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign In - Pizza Delight</title>
-    <link rel="stylesheet" href="body2.css">
+    <title>Sign In</title>
+    <link rel="stylesheet" href="body.css">
 </head>
+
 <body>
-    <div class="signin-container">
-        <h1>Sign In</h1>
-        <form action="#" method="post" class="form">
-            <div class="input-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button type="submit">Sign In</button>
-        </form>
-        <p class="signup-link">Don't have an account? <a href="#">Sign Up</a></p>
+    <div id="body">
+        <div class="signin-container">
+            <h1>Sign In</h1>
+            <form id="login-form" class="form">
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit">Sign In</button>
+            </form>
+            <p class="signup-link">Don't have an account? <a href="http://127.0.0.1:5500/register.html">Sign Up</a></p>
+        </div>
     </div>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            const loginData = {
+                email: email,
+                password: password
+            };
+
+            fetch('http://172.16.0.93:8080/login', { // Replace with your backend endpoint URL
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(loginData)
+            })
+                .then(response => {
+                    console.log('Success:', response);
+                    if (response.ok) {
+                        localStorage.setItem('isLoggedIn', 'true');
+                        // Redirect to the dashboard or another page on successful login
+                        window.location.href = 'http://127.0.0.1:5500/'; // Replace with your target page
+                    } else {
+                        alert('Login failed: ' + response.message);
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    alert('There was an error logging in.');
+                });
+        });
+    </script>
 </body>
+
 </html>

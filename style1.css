@@ -1,0 +1,188 @@
+.just-another-hand-regular {
+    font-family: "Just Another Hand", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #2a2a2a;
+}
+
+.navbar {
+    background-color: #192021;
+    color: white;
+    height: 12vh;
+    padding-bottom: 10px;
+}
+
+.navbar-container {
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    font-family: "Just Another Hand", cursive;
+    font-size: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.brand a {
+    color: white;
+    text-decoration: none;
+}
+
+.brand img {
+    height: 100px;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center;
+}
+
+.nav-links a {
+    font-family: "Just Another Hand", cursive;
+    color: white;
+    text-decoration: none;
+    font-size: 28px;
+    font-weight: 80;
+    margin: 0 15px;
+    padding: 10px;
+    transition: 0.3s ease;
+}
+
+.nav-links a:hover {
+    background-color: #333;
+    border-radius: 5px;
+}
+
+#btn {
+    margin-right: 25px;
+    margin-top: 8px;
+    width: 108px;
+    height: 38px;
+    border-radius: 8px;
+    color: white;
+    background-color: #f46536;
+    font-family: "Just Another Hand", cursive;
+    font-size: 30px;
+    border: 0;
+    transition: 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#btn:hover {
+    background-color: #cc522b;
+    transform: scale(1.1);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+footer {
+    margin-top: 200px;
+    background-color: #000;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.footer-section h3 {
+    text-align: start;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.footer-section ul {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    list-style: none;
+    text-align: start;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 8px;
+}
+
+.footer-section ul li a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-section ul li a:hover {
+    color: #f39c12;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.social-icons a {
+    margin: 0 10px;
+}
+
+.social-icons img {
+    width: 24px;
+    height: 24px;
+}
+
+/* Existing styles ... */
+
+.cart-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #192021;
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cart-items {
+    margin-bottom: 20px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+#checkout-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #ff4500;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#checkout-btn:hover {
+    background-color: #e43e00;
+}

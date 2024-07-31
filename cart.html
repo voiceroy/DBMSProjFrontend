@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Order</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Cart</title>
+    <link rel="stylesheet" href="style1.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Just+Another+Hand&display=swap');
@@ -16,38 +16,23 @@
     <nav class="navbar">
         <div class="navbar-container">
             <div class="brand">
-                <img src="Screenshot_2024-07-17_033428-removebg-preview.png">
+                <img src="Screenshot_2024-07-17_033428-removebg-preview.png" alt="Pizzeria">
                 <a href="#">Pizzeria</a>
             </div>
             <div class="nav-links">
                 <a href="#">Home</a>
                 <a href="aboutus.html">About Us</a>
                 <button id="btn">Sign In</button>
-                <button id="btn-cart">Cart</button>
-                <button id="logout-btn" style="display: none;">Log Out</button>
             </div>
         </div>
     </nav>
 
-    <div class="content">
-        <div class="top">
-            <div class="para">
-                <p>Indulge in</p>
-                <p> Our Freshly Baked</p>
-                <p>Pizza.</p>
-            </div>
-            <div>
-                <button id="order-btn">Order Now</button>
-            </div>
-        </div>
+    <div class="cart-container">
+        <h2>Cart</h2>
+        <div class="cart-items"></div>
+        <div class="total-price"></div>
+        <button id="checkout-btn">Checkout</button>
     </div>
-
-
-    <p id="piz">PIZZA</p>
-    <div id="pizza-container"></div>
-
-    <p id="non-piz">OTHER ITEMS</p>
-    <div id="non-pizza-container"></div>
 
     <footer>
         <div class="footer-container">
@@ -71,7 +56,7 @@
             </div>
         </div>
     </footer>
-    <script src="app.js"></script>
+    <script src="cart.js"></script>
 </body>
 
 </html>
